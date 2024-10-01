@@ -42,7 +42,7 @@ public class Warehouse {
 
     public Optional<ProductRecord> getProductById(UUID uuid_value){
         for (ProductRecord product : getProducts()) {
-            if(product.equals(uuid_value)){
+            if(product.UUID_value().equals(uuid_value)){
                 return Optional.of(product);
             }
         }
