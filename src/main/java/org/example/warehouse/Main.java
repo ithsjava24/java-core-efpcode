@@ -17,7 +17,7 @@ public class Main {
         addedProduct = warehouse.addProduct(UUID_milk, "Milk", Category.of("Dairy"), BigDecimal.valueOf(999, 2));
 
         var temp = warehouse.getProductById(addedProduct.uuid());
-        System.out.println(temp);
+        //System.out.println(temp);
         Warehouse warehouse2 = Warehouse.getInstance();
         addedProducts.add(warehouse2.addProduct(UUID.randomUUID(), "Milk", Category.of("Dairy"), BigDecimal.valueOf(999, 2)));
         addedProducts.add(warehouse2.addProduct(UUID.randomUUID(), "Apple", Category.of("Fruit"), BigDecimal.valueOf(290, 2)));
@@ -25,7 +25,11 @@ public class Main {
 
         //System.out.println(warehouse2.getProductById(addedProducts.get(1).uuid()));
         addedProducts.forEach(System.out::println);
+        System.out.println();
+
         warehouse2.updateProductPrice(addedProducts.get(1).uuid(), BigDecimal.valueOf(311, 2));
+
+        warehouse2.getProducts().forEach(item -> System.out.println(item.price()));
         System.out.println();
         addedProducts.forEach(System.out::println);
 

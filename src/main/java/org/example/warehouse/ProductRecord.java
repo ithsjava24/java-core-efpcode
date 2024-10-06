@@ -87,4 +87,7 @@ public final class ProductRecord {
     }
 
 
+    public boolean isEmpty() {
+        return this.UUID_value == null || this.UUID_Name == null || this.category == null || this.bigDecimal == null;
+    }
 }

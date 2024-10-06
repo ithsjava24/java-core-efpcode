@@ -3,7 +3,7 @@ package org.example.warehouse;
 import java.util.Objects;
 
 public class Category {
-    private String categoryName;
+    private final String categoryName;
 
     private Category(String categoryName) {
         if (categoryName==null || categoryName.isEmpty() || categoryName.isBlank()) {
@@ -20,7 +20,7 @@ public class Category {
         return this.categoryName;
     }
 
-    public static Category of(String categoryName) {
+    public static Category of (String categoryName) {
         return new Category(categoryName);
     }
 
