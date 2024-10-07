@@ -8,14 +8,23 @@ public final class ProductRecord {
     private final UUID UUID_value;
     private final String UUID_Name;
     private final Category category;
-    private BigDecimal bigDecimal;
+    private BigDecimal price;
 
 
     public ProductRecord(UUID UUID_value, String UUID_Name, Category category, BigDecimal bigDecimal) {
+        if (UUID_Name == null || UUID_Name.isEmpty() || UUID_Name.isBlank()) {
+            throw new IllegalArgumentException("Product name can't be null or empty.");
+        }
+
+        if (category == null || category.getName() == null || category.getName().isEmpty() || category.getName().isBlank()) {
+            throw new IllegalArgumentException("Category can't be null.");
+        }
+
+
         this.UUID_value = UUID_value;
         this.UUID_Name = UUID_Name;
         this.category = category;
-        this.bigDecimal = bigDecimal;
+        this.price = bigDecimal;
     }
 
 
@@ -28,20 +37,20 @@ public final class ProductRecord {
 
 
     public BigDecimal price() {
-        if (bigDecimal == null) {
+        if (price == null) {
             return BigDecimal.ZERO;
         }
-        return bigDecimal;
+        return price;
     }
 
 
-    public void setBigDecimal(BigDecimal bigDecimal){
-        this.bigDecimal = bigDecimal;
+    public void setPrice(BigDecimal price){
+        this.price = price;
     }
 
 
 
-    public BigDecimal getBigDecimal() {
+    public BigDecimal getPrice() {
         return price();
     }
 
@@ -58,7 +67,7 @@ public final class ProductRecord {
     }
 
     public BigDecimal bigDecimal() {
-        return bigDecimal;
+        return price;
     }
 
     @Override
@@ -69,12 +78,12 @@ public final class ProductRecord {
         return Objects.equals(this.UUID_value, that.UUID_value) &&
                 Objects.equals(this.UUID_Name, that.UUID_Name) &&
                 Objects.equals(this.category, that.category) &&
-                Objects.equals(this.bigDecimal, that.bigDecimal);
+                Objects.equals(this.price, that.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(UUID_value, UUID_Name, category, bigDecimal);
+        return Objects.hash(UUID_value, UUID_Name, category, price);
     }
 
     @Override
@@ -83,11 +92,7 @@ public final class ProductRecord {
                 "UUID_value=" + UUID_value + ", " +
                 "UUID_Name=" + UUID_Name + ", " +
                 "category=" + category + ", " +
-                "bigDecimal=" + bigDecimal + ']';
+                "bigDecimal=" + price + ']';
     }
 
-
-    public boolean isEmpty() {
-        return this.UUID_value == null || this.UUID_Name == null || this.category == null || this.bigDecimal == null;
-    }
 }
