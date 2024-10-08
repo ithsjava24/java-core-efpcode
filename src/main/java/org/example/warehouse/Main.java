@@ -16,14 +16,11 @@ public class Main {
         Warehouse warehouse = Warehouse.getInstance("test");
         addedProduct = warehouse.addProduct(UUID_milk, "Milk", Category.of("Dairy"), BigDecimal.valueOf(999, 2));
 
-        var temp = warehouse.getProductById(addedProduct.uuid());
-        //System.out.println(temp);
         Warehouse warehouse2 = Warehouse.getInstance();
         addedProducts.add(warehouse2.addProduct(UUID.randomUUID(), "Milk", Category.of("Dairy"), BigDecimal.valueOf(999, 2)));
         addedProducts.add(warehouse2.addProduct(UUID.randomUUID(), "Apple", Category.of("Fruit"), BigDecimal.valueOf(290, 2)));
         addedProducts.add(warehouse2.addProduct(UUID.randomUUID(), "Bacon", Category.of("Meat"), BigDecimal.valueOf(1567, 2)));
 
-        //System.out.println(warehouse2.getProductById(addedProducts.get(1).uuid()));
         addedProducts.forEach(System.out::println);
         System.out.println();
 

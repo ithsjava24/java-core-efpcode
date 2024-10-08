@@ -5,12 +5,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Warehouse {
-    String name;
+    private final String name;
     private static final List<Warehouse> addedWarehouses = new ArrayList<>();
     private final List<ProductRecord> addedProducts = new ArrayList<>();
     private final List<ProductRecord> changedProducts = new ArrayList<>();
 
     private Warehouse() {
+        this.name = null;
 
     }
 
@@ -59,9 +60,11 @@ public class Warehouse {
 
     public ProductRecord addProduct(UUID UUID_value, String UUID_Name, Category category, BigDecimal bigDecimal) {
         var item = getProductById(UUID_value);
+
         if (item.isPresent()) {
             throw new IllegalArgumentException("Product with that id already exists, use updateProduct for updates.");
         }
+
         var product = new ProductRecord(UUID_value, UUID_Name, category, bigDecimal);
         addedProducts.add(product);
         return product;
@@ -77,8 +80,6 @@ public class Warehouse {
                 .findFirst();
 
     }
-
-
 
     public void updateProductPrice(UUID UUID_value, BigDecimal bigDecimal) {
         var product = getProducts().stream().filter(p -> p.UUID_value().equals(UUID_value)).findFirst();
@@ -98,16 +99,13 @@ public class Warehouse {
 
     public Map<Category, List<ProductRecord>> getProductsGroupedByCategories() {
         return getProducts().stream()
-                .collect(java.util.stream.Collectors.groupingBy(ProductRecord::category));
-
-
+                .collect(Collectors.groupingBy(ProductRecord::category));
     }
-
 
     public Map<Category, List<ProductRecord>> getProductsGroupedByCategories(Category category) {
         return getProducts().stream()
                 .filter(p -> p.category().getName().equals(category.getName()))
-                .collect(java.util.stream.Collectors.groupingBy(ProductRecord::category));
+                .collect(Collectors.groupingBy(ProductRecord::category));
     }
 
     public List<ProductRecord> getProductsBy(Category category) {

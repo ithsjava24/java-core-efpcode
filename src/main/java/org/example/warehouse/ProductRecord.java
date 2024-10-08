@@ -50,25 +50,16 @@ public final class ProductRecord {
 
 
 
-    public BigDecimal getPrice() {
-        return price();
-    }
 
     public UUID UUID_value() {
         return UUID_value;
     }
 
-    public String UUID_Name() {
-        return UUID_Name;
-    }
 
     public Category category() {
         return category;
     }
 
-    public BigDecimal bigDecimal() {
-        return price;
-    }
 
     @Override
     public boolean equals(Object obj) {
