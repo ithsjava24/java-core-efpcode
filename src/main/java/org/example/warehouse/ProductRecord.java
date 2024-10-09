@@ -1,4 +1,5 @@
 package org.example.warehouse;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.UUID;
@@ -44,11 +45,9 @@ public final class ProductRecord {
     }
 
 
-    public void setPrice(BigDecimal price){
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
-
-
 
 
     public UUID UUID_value() {

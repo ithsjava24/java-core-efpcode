@@ -9,7 +9,7 @@ final public class Category {
     private final static List<Category> categoryList = new ArrayList<>();
 
     private Category(String categoryName) {
-        if (categoryName==null || categoryName.isEmpty() || categoryName.isBlank()) {
+        if (categoryName == null || categoryName.isEmpty() || categoryName.isBlank()) {
             throw new IllegalArgumentException("Category name can't be null");
         }
         categoryName = categoryName.substring(0, 1).toUpperCase().concat(categoryName.substring(1));
@@ -21,7 +21,7 @@ final public class Category {
         return this.categoryName;
     }
 
-    public static Category of (String categoryName) {
+    public static Category of(String categoryName) {
         var category =
                 categoryList.stream()
                         .filter(c -> c.getName().equals(categoryName))
