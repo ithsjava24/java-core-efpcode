@@ -82,7 +82,7 @@ public class Warehouse {
     }
 
     public void updateProductPrice(UUID UUID_value, BigDecimal newPrice) {
-        var product = getProducts().stream().filter(p -> p.UUID_value().equals(UUID_value)).findFirst();
+        var product = getProductById(UUID_value);
         if (product.isEmpty()) {
             throw new IllegalArgumentException("Product with that id doesn't exist.");
         }
