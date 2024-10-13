@@ -87,17 +87,11 @@ public class Warehouse {
             throw new IllegalArgumentException("Product with that id doesn't exist.");
         }
         changedProducts.add(product.get());
-//        getProducts()
-//                .stream()
-//                .filter(item -> item.UUID_value().equals(UUID_value))
-//                .findFirst()
-//                .ifPresent(item -> item.setPrice(bigDecimal));
+
         var item = product.stream()
                 .map(p -> new ProductRecord(p.UUID_value(), p.UUID_Name(), p.category(), newPrice)).toList().getFirst();
         addedProducts.remove(product.get());
         addedProducts.add(item);
-
-
 
     }
 
